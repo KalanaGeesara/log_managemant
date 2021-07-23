@@ -1,0 +1,59 @@
+version: "3"
+services:
+  web:
+    image: httpd
+    ports:
+      - "81:80"
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: httpd.access
+    networks:
+      - elastic
+
+  fluentd:
+    build: ./fluentd
+    volumes:
+      - ./fluentd/conf:/fluentd/etc
+      - /home/kalana/apps/jboss-4.2.3.GA/server/G9/log/:/fluentd/log
+    links:
+      - "elasticsearch"
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    networks:
+      - elastic
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.4
+    container_name: es01
+    ports:
+      - "9200:9200"
+    networks:
+      - elastic
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - bootstrap.memory_lock=false
+      - cluster.initial_master_nodes=es01
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.13.4
+    container_name: kib01
+    links:
+      - "elasticsearch"
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://es01:9200
+      ELASTICSEARCH_HOSTS: http://es01:9200
+    networks:
+      - elastic
+
+networks:
+  elastic:
+    driver: bridge
