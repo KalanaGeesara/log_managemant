@@ -18,7 +18,6 @@ services:
     build: ./fluentd
     volumes:
       - ./fluentd/conf:/fluentd/etc
-      - /home/kalana/apps/jboss-4.2.3.GA/server/G9/log/:/fluentd/log
     links:
       - "elasticsearch"
     ports:
