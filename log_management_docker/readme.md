@@ -33,8 +33,5 @@ Docker needs to installed in your system
 1. docker-compoase up -d
    
 
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
+<!-- More Info -->
+You can find more details at https://medium.com/@kalanageesara.15/docker-log-management-using-efk-stack-a1126e7a7f89?source=friends_link&sk=2ed5c1366af4e5a707df9e82c3cae1ff

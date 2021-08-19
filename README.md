@@ -33,7 +33,3 @@ Docker needs to installed in your system
 1. docker-compoase up -d
    
 
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
