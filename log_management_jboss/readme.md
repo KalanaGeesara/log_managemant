@@ -1,14 +1,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
   <h3 align="center">EFK stack log management</h3>
 
   <p align="center">
-    Using Elasticsearch, fluentd and Kibana to retrieve and dispaly docker and jboss logs
+    Using Elasticsearch, fluentd and Kibana to retrieve and dispaly jboss logs
   </p>
 </p>
 
@@ -30,5 +27,9 @@ Docker needs to installed in your system
 
 ### Sreps
 
-1. docker-compoase up -d
+1. Replace the <log_file_location> in docker-compose.yml file and Dockerfile.
+2. docker-compoase up -d
+3. Navigate http://localhost:5601 to access the Kibana UI from the browser
+4. Create index and index pattern to discover the logs from the Kibana UI
+
    
